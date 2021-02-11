@@ -80,7 +80,7 @@ kubectl create -n <namespace> -f http://
   [t10k-images-idx3-ubyte.gz](http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz)
   <br>
   ```bash
-  #Copy to PV using kubernetes master to utility.
+  #Copy the files to PV using utility pod from kubernetes master host.
   kubectl -n <namespace> cp MXNET-MNIST/t10k-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/t10k-images-idx3-ubyte.gz
   kubectl -n <namespace> cp MXNET-MNIST/train-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/train-images-idx3-ubyte.gz
   kubectl -n <namespace> cp MXNET-MNIST/t10k-labels-idx1-ubyte.gz dataaccess:/data/MXNET-MNIST/t10k-labels-idx1-ubyte.gz
