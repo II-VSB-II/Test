@@ -22,14 +22,14 @@ spec:
       storage: 10Gi
 ```
 Create PVC:
-```
+```console
 kubectl create -n <namespace> -f http://
 ```
 
 ## Utility Pod to copy dataset to Persistent Volume
 
 Content of **dataaccess.yaml**
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -48,17 +48,17 @@ spec:
         claimName: mxnet-mnist-pvc
 ```
 Create utility pod:
-```
+```console
 kubectl create -n <namespace> -f http://
 ```
 ## Prepare dataset
  <details>
  <summary>Non Air Gap Enviornment/Proxy Enviornment</summary>
-```
+```console
  kubectl -n <namespace> exec -it dataaccess sh
 ```
 Execute the below commands to download the dataset.
-```
+```console
 # Creating MXNET-MNIST directory in PV
 mkdir -p /data/MXNET-MNIST
 
@@ -80,7 +80,7 @@ Download below files locally and using winscp copy to kubernetes master host.<br
 [train-images-idx3-ubyte.gz](http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz) <br>
 [t10k-labels-idx1-ubyte.gz](http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz) <br>
 [t10k-images-idx3-ubyte.gz](http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz)
-```sh
+```console
 # Copy to PV using kubernetes master to utility.
 kubectl -n <namespace> cp MXNET-MNIST/t10k-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/t10k-images-idx3-ubyte.gz
 kubectl -n <namespace> cp MXNET-MNIST/train-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/train-images-idx3-ubyte.gz
@@ -88,7 +88,7 @@ kubectl -n <namespace> cp MXNET-MNIST/t10k-labels-idx1-ubyte.gz dataaccess:/data
 kubectl -n <namespace> cp MXNET-MNIST/train-labels-idx1-ubyte.gz dataaccess:/data/MXNET-MNIST/train-labels-idx1-ubyte.gz
 ```
 Verify data is copied or not.
-```
+```console
 kubectl -n abe exec -t dataaccess -c alpine  -- ls -lrt /data/MXNET-MNIST
 ```
 </details>
