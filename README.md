@@ -98,7 +98,7 @@ Content of **mxnet-mnist -pvc.yaml**
 apiVersion: "kubeflow.org/v1beta1"
 kind: Experiment
 metadata:
-  ! namespace: abe
+!  namespace: abe
   name: mxnet-mnist-pvc
 spec:
   objective:
