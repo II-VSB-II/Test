@@ -48,16 +48,16 @@ spec:
         claimName: mxnet-mnist-pvc
 ```
 Create utility pod:
-```
+```bash
 kubectl create -n <namespace> -f http://
 ```
 ## Prepare dataset
 * **_Non Air Gap Enviornment/Proxy Enviornment_**
-  ```
+  ```bash
   kubectl -n <namespace> exec -it dataaccess sh
   ```
   Execute the below commands to download the dataset.
-  ```
+  ```bash
   #Creating MXNET-MNIST directory in PV
   mkdir -p /data/MXNET-MNIST
   
@@ -79,7 +79,7 @@ kubectl create -n <namespace> -f http://
   [t10k-labels-idx1-ubyte.gz](http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz) </br>
   [t10k-images-idx3-ubyte.gz](http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz)
   <br>
-  ```
+  ```bash
   #Copy to PV using kubernetes master to utility.
   kubectl -n <namespace> cp MXNET-MNIST/t10k-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/t10k-images-idx3-ubyte.gz
   kubectl -n <namespace> cp MXNET-MNIST/train-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/train-images-idx3-ubyte.gz
@@ -87,6 +87,6 @@ kubectl create -n <namespace> -f http://
   kubectl -n <namespace> cp MXNET-MNIST/train-labels-idx1-ubyte.gz dataaccess:/data/MXNET-MNIST/train-labels-idx1-ubyte.gz
   ```
   Verify data is copied or not.
-  ```
+  ```bash
   kubectl -n abe exec -t dataaccess -c alpine  -- ls -lrt /data/MXNET-MNIST
   ```
