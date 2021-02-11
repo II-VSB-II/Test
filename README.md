@@ -94,7 +94,7 @@ kubectl create -n <namespace> -f http://
 ## Create Experiment
 
 Content of **mxnet-mnist -pvc.yaml**
-```yaml
+```diff
 apiVersion: "kubeflow.org/v1beta1"
 kind: Experiment
 metadata:
