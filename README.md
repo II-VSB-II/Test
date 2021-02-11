@@ -23,7 +23,7 @@ spec:
 ```
 Create PVC:
 ```bash
-kubectl create -n <namespace> -f http://
+kubectl create -n dev1 -f http://
 ```
 
 ## Utility Pod to copy dataset to Persistent Volume
@@ -49,12 +49,12 @@ spec:
 ```
 Create utility pod:
 ```bash
-kubectl create -n <namespace> -f http://
+kubectl create -n dev1 -f http://
 ```
 ## Prepare dataset
 * **_Non Air Gap Enviornment/Proxy Enviornment_**
   ```bash
-  kubectl -n <namespace> exec -it dataaccess sh
+  kubectl -n dev1 exec -it dataaccess sh
   ```
   Execute the below commands to download the dataset.
   ```bash
@@ -81,24 +81,24 @@ kubectl create -n <namespace> -f http://
   <br>
   ```bash
   #Copy the files to PV using utility pod from kubernetes master host.
-  kubectl -n <namespace> cp MXNET-MNIST/t10k-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/t10k-images-idx3-ubyte.gz
-  kubectl -n <namespace> cp MXNET-MNIST/train-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/train-images-idx3-ubyte.gz
-  kubectl -n <namespace> cp MXNET-MNIST/t10k-labels-idx1-ubyte.gz dataaccess:/data/MXNET-MNIST/t10k-labels-idx1-ubyte.gz
-  kubectl -n <namespace> cp MXNET-MNIST/train-labels-idx1-ubyte.gz dataaccess:/data/MXNET-MNIST/train-labels-idx1-ubyte.gz
+  kubectl -n dev1 cp MXNET-MNIST/t10k-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/t10k-images-idx3-ubyte.gz
+  kubectl -n dev1 cp MXNET-MNIST/train-images-idx3-ubyte.gz dataaccess:/data/MXNET-MNIST/train-images-idx3-ubyte.gz
+  kubectl -n dev1 cp MXNET-MNIST/t10k-labels-idx1-ubyte.gz dataaccess:/data/MXNET-MNIST/t10k-labels-idx1-ubyte.gz
+  kubectl -n dev1 cp MXNET-MNIST/train-labels-idx1-ubyte.gz dataaccess:/data/MXNET-MNIST/train-labels-idx1-ubyte.gz
   ```
   Verify data is copied or not.
   ```bash
-  kubectl -n <namespace> exec -t dataaccess -c alpine  -- ls -lrt /data/MXNET-MNIST
+  kubectl -n dev1 exec -t dataaccess -c alpine  -- ls -lrt /data/MXNET-MNIST
   ```
 
 ## Create Experiment
 
 Content of **mxnet-mnist -pvc.yaml**
-```diff
+```yaml
 apiVersion: "kubeflow.org/v1beta1"
 kind: Experiment
 metadata:
-!  namespace: abe
+  namespace: dev1
   name: mxnet-mnist-pvc
 spec:
   objective:
