@@ -93,7 +93,7 @@ kubectl create -n dev1 -f http://
 
 ## Create Experiment
 
-Content of **mxnet-mnist -pvc.yaml**
+Content of **mxnet-mnist-pvc.yaml**
 ```yaml
 apiVersion: "kubeflow.org/v1beta1"
 kind: Experiment
@@ -164,7 +164,8 @@ spec:
                 restartPolicy: Never
 
 ```
-Create experiment.
-```bash
-kubectl apply -f 
-```
+Copy the content of **mxnet-mnist-pvc.yaml** and submit the experiment from Katib HyperParameter Tunning tab in Kubeflow UI. 
+
+## Experiment Screenshots
+
+
