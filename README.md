@@ -72,7 +72,7 @@ kubectl create -n <namespace> -f http://
   wget http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz -P /data/MXNET-MNIST
   ```
 * **_Air Gap Enviornment_**
-  Download below files locally and using winscp copy to kubernetes master host.<br>
+  Download below files locally and using winscp copy to kubernetes master host. <br>
   [train-labels-idx1-ubyte.gz](http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz) <br>
   [train-images-idx3-ubyte.gz](http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz) <br>
   [t10k-labels-idx1-ubyte.gz](http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz) <br>
